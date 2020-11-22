@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <!--input有一个监听用户输入的时间-->
+  <!--<input type="text" v-model="message">-->
+<!--  <input type="text" :value="message" @input="valueChange">-->
+  <input type="text" :value="message" @input="message = $event.target.value">
+  <h2>{{message}}</h2>
+
+  <!--v-model 也可以用于textarea,   textarea可以鼠标拖动来改版输入框的大小-->
+  <textarea v-model="message"></textarea>
+  <p>输入的内容是: {{message}}</p>
+
+  <!--
+    v-model原理(其实就是一个语法糖)
+      1.v-bind绑定一个value属性
+      2.v-on指令给当前元素绑定input事件
+
+    所以下面两行代码是等同的
+    <input type="text" v-model="message">
+    <input type="text" v-bind:value="message" v-on:input="message = $event.target.value">
+  -->
+
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好啊'
+    },
+    methods: {
+      valueChange(event) {
+        this.message = event.target.value;
+      }
+    }
+  })
+</script>
+</body>
+</html>

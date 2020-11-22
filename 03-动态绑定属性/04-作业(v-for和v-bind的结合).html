@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+
+  <style>
+    .active {
+      color: red;
+    }
+  </style>
+
+</head>
+<body>
+
+  <!--需求， 点击列表中的那一项，那一项文字就变红-->
+<div id="app">
+  <ul>
+    <li v-for="(item, index) in movies"
+        @click="changeColor(index)">{{index}}-{{item}}</li>
+  </ul>
+
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好啊',
+      movies: ['千与千寻', '天空之城', '一人之下', '一念永恒'],
+      methods: {
+        changeColor: function (index) {
+          document.getElementsByTagName("li").item(index).className='active'
+        }
+      }
+    }
+  })
+</script>
+
+
+</body>
+</html>

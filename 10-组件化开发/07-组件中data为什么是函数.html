@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+
+<div id="app">
+  <cpn></cpn>
+  <cpn></cpn>
+  <cpn></cpn>
+</div>
+
+<template id="cpn">
+  <div>
+    <h2>当前计数: {{counter}}</h2>
+    <button @click="increment">+</button>
+    <button @click="decrement">-</button>
+  </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+
+  Vue.component('cpn', {
+    template: '#cpn',
+    // 若这里返回的是一个对象， 那么多次使用该组件就是用的同一个对象， 会产生这里修改其他地方也跟着变的问题，
+    // 所以返回函数，每次返回的都是新的对象，然后组件多次使用，多个组件之间数据不会产生影响
+    data() {
+      return {
+        counter: 0
+      }
+    },
+    methods: {
+      increment() {
+        this.counter ++;
+      },
+      decrement() {
+        this.counter --;
+      }
+    }
+  })
+
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好啊'
+    }
+  })
+</script>
+</body>
+</html>

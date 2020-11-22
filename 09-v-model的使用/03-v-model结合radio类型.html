@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+
+  <!--多个radio只能选一个时， 则吧他们明明相同即可
+      都进行双向绑定，并且绑定的变量一样时， 可以不设置name属性-->
+
+  <label for="male">
+    <!--<input type="radio" id="male" name="sex">男-->
+    <input type="radio" id="male" value="男" v-model="sex">男
+  </label>
+  <label for="female">
+    <!--<input type="radio" id="female" name="sex">女-->
+    <input type="radio" id="female" value="女" v-model="sex">女
+  </label>
+  <h2>选的性别是： {{sex}}</h2>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好啊',
+      sex: '女'
+    }
+  })
+</script>
+</body>
+</html>

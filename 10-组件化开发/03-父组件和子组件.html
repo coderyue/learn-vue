@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <cpn2></cpn2>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+
+  // 创建第一个组件构造器(子组件)
+  const cpnC1 = Vue.extend({
+    template: `
+      <div>
+        <h2>我是标题1</h2>
+        <p>我是内容1，dsfs</p>
+      </div>
+    `
+  })
+
+  // 创建第二个组件构造器(父组件),     父组件中使用了子组件，子组件就像是从父组件中抽出一个小组件(和Java父子类有些区别)
+  const cpnC2 = Vue.extend({
+    template: `
+      <div>
+        <h2>我是标题2</h2>
+        <p>我是内容2，wwrewrw</p>
+        <cpn1></cpn1>
+      </div>
+    `,
+    components: {
+      cpn1: cpnC1
+    }
+  })
+
+  // 相当于root组件(根组件)
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好啊'
+    },
+    components: {
+      cpn2: cpnC2,
+      // 这个就相当于一个作用域，在这里注册的组件只能在这里使用，
+      // 父组件中注册的不在这里注册，则只能在父组件中使用，不能在页面使用
+
+      // 不能使用子组件的原因是在处理父组件时，直接把子组件那个标签替换了，然后编译出父组件，
+      // 而子组件并没有并没有进行注册， 因此找不到子组件
+      // 注册组件顺序是， 先在局域的component中找， 然后去全局组件中找，
+      // 虽然父组件中使用子组件，但是vue在处理时， 直接替换标签，然后生成父组件
+      cpn1: cpnC1
+    }
+  })
+</script>
+
+</body>
+</html>
