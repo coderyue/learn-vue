@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <!--当子组件中props中变量设置为驼峰时，使用子组件传递参数时需要把驼峰换成-加驼峰小写字母， 否则传不过去， vue3.0已支持驼峰-->
+  <cpn :cinfo="info" :c-message="message"></cpn>
+</div>
+
+<template id="cpn">
+  <div>
+    <p>{{cinfo}}</p>
+    <h2>{{cMessage}}</h2>
+  </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+
+  const cpn = {
+    template: '#cpn',
+    props: {
+      cinfo: {
+        type: Object,
+        default() {
+          return [];
+        }
+      },
+      cMessage: {
+        type: String,
+        default: ''
+      }
+    }
+  }
+
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好啊',
+      info: {
+        name: 'lin',
+        age: 18,
+        height: 1.88
+      }
+    },
+    components: {
+      cpn
+    }
+  })
+</script>
+
+</body>
+</html>

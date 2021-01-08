@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <ul>
+    <li v-for="item in letters" :key="item">{{item}}</li>
+  </ul>
+  <button @click="btnClick">按钮</button>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      letters: ['a', 'b', 'c', 'd']
+    },
+    methods: {
+      btnClick() {
+        // 1. push()方法， 往末尾添加元素
+        // this.letters.push('aaa')
+        // this.letters.push('aaa', 'bbb', 'ccc')
+
+        // 2. pop()方法, 从末尾弹出元素(删除)
+        // this.letters.pop();
+
+        // 3. shift(), 删除数组第一个元素， (从开头删除元素)
+        // this.letters.shift();
+
+        // 4. unshift(), 从开头添加元素(一个或多个)
+        // this.letters.unshift('aa', 'bbb', 'ccc')
+
+        // 5.splice: 删除元素/插入元素/替换元素
+        // this.letters.splice(start, deleteCount, items(数组)),   第三个参数可以不传
+        // 即， 从哪个位置开始删除几个， 然后再用后面给出的元素进行替换， 若后面元素多，则添加到后面,  试试就知道了
+        // this.letters.splice(1, 1, 'addsf', 'ewrwe', 'ewer')
+
+        // 5. sort()
+        // this.letters.sort();
+
+        // 6. reverse()
+        // this.letters.reverse()
+
+        // 注意，通过下标修改数组中的元素，页面不会发生改变，但是数据确实修改了
+        // this.letters[0] = 'fwoerowe'; // 那要修改的时候可以用splice来操作，达到页面重新渲染
+        // this.letters.splice(0, 1, 'bbbb')
+        // 还有一个方法set(要修改的对象， 下标值， 修改后的值)
+        Vue.set(this.letters, 0, 'bbbbb')
+      }
+
+    }
+  })
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <!--问题是， 这两个span不会同时出现， vue会为提高效率， 点击按钮切换的时候并没有重新渲染label和input，
+    而是对比一下，把不一样的替换掉
+    解决办法： 在input标签中加入 key， 给出不一样的名字， vue就当成不一样的东西来处理
+
+   vue渲染时，中间有个虚拟dom然后再到浏览器进行渲染，， react也是这样进行渲染的
+   vue在进行dom渲染时，出于性能的考虑，会尽可能复用已经存在的元素，而不是重新创建元素，
+   这里vue内部发现原来的input元素不再使用，直接作为else中的input来使用
+
+   这个有些情况下不清空输入的内容比较好， 看需求进行选择
+  -->
+  <span v-if="isUser">
+    <!--label中的这个for里填输入框的id， 然后页面点击label就会把光标定位在那个id对应的输入框中-->
+    <label for="userName">用户账号</label>
+    <input type="text" id="userName" placeholder="用户账号" key="userName">
+  </span>
+  <span v-else>
+    <label for="email">用户邮箱</label>
+    <input type="text" id="email" placeholder="用户邮箱" key="email">
+  </span>
+  <button @click="isUser = !isUser">切换账号</button>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好啊',
+      isUser: true
+    }
+  })
+</script>
+</body>
+</html>

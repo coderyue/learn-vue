@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <!--官方推荐我们使用v-for时， 给对应的元素或组件添加上一个   :key 属性-->
+
+  <!--vue这样的遍历， 比如要往中间插入一个元素， 那么vue会在要插入的位置往后所有的元素都更改一下，这样效率较低
+    再加上key(每一个节点的唯一标识)， vue会先比对没有改变的元素， 这些元素不变， 然后添加一个需要新增的元素，
+    vue内部用的diff算法-->
+
+<!-- :key就是给每一个节点做一个唯一标识， 因此，不能用index， 添加元素index会发生改变，不能做唯一标识-->
+  <!--所以一句话， key的作用主要是为了高效的更新虚拟dom-->
+
+
+  <!--但是当item非唯一时， 添加key也没有什么意义-->
+  <ul>
+    <li v-for="item in letters" :key="item">{{item}}</li>
+  </ul>
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      letters: ['A', 'B', 'C', 'D', 'E']
+    }
+  })
+</script>
+</body>
+</html>

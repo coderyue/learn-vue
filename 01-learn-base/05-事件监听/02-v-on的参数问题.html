@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+
+<div id="app">
+  <!--1.事件调用方法没有参数， 括号可以省略-->
+  <button @click="btn1Click">按钮1</button>
+
+  <!--2.方法中有要传的参数，但是事件监听这里没有写参数，
+    如果监听事件哪里写了括号， 则方法中参数拿到的是一个undefined，
+    如果监听事件哪里没有写括号， 则默认传浏览器生成的event事件对象， 如mouseEvent-->
+<!--  <button @click="btn2Click(123)">按钮2</button>-->
+<!--  <button @click="btn2Click()">按钮2</button>-->
+  <button @click="btn2Click">按钮2</button>
+
+  <!--3.即需要event参数， 又需要其他参数-->
+  <!--调用时，手动获取到浏览器创建的event对象: $event,,  多个参数时， 注意参数先后顺序， 这里放的非基本数据类型就会当成变量处理-->
+  <button @click="btn3Click('abc', $event)">按钮3</button>
+  <button>按钮4</button>
+
+</div>
+
+<script src="../js/vue.js"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      message: '你好啊'
+    },
+    methods: {
+      btn1Click() {
+        console.log('btn1Click');
+      },
+      btn2Click(event) {
+        console.log('==========' + event);
+      },
+      btn3Click(abc, event){
+        console.log('==========', abc, event);
+      }
+
+    }
+  })
+</script>
+
+</body>
+</html>
