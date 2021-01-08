@@ -1,0 +1,2 @@
+创建vue2项目   vue init webpack [项目名称]
+创建3版本项目， vue create [项目名称]

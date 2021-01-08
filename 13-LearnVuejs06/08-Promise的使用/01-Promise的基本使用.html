@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<script>
+
+  new Promise((resolve, reject) => {
+    setTimeout(() => {
+      // 任务逻辑
+      // 逻辑处理完成，把下一步操作需要的数据传递出去
+      // 执行成功，调用resolve
+      // resolve('hello world')
+
+      // 执行失败，条用reject方法
+      reject('执行错误')
+    }, 1000)
+  }).then((data) => {
+    console.log(data)
+    console.log(data)
+    console.log(data)
+  }).catch(err => {
+    console.log('发生错误: ' + err)
+  })
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
